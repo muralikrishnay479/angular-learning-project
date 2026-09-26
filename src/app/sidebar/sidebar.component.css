@@ -1,0 +1,14 @@
+.sidebar {
+  padding: 1.5rem;
+  background: #f0f3f8;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  padding: 0.65rem 0;
+}
