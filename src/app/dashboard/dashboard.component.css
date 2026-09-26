@@ -2,10 +2,8 @@
   padding: 1.5rem;
 }
 
-h2 {
-  margin-top: 0;
-}
-
-p {
-  color: #4789ec;
+.card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
 }
