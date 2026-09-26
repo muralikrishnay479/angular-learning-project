@@ -1,15 +1,26 @@
 <main class="dashboard">
   <h1>Dashboard</h1>
-  <p>Welcome to Angular LMS. Here is an overview of your learning portal.</p>
+  <p>Welcome, {{ studentName }}!</p>
 
   <section class="card">
-    <h2>Students</h2>
-    <p>View information about students in the learning portal.</p>
+    <h2>Course Summary</h2>
+    <p>Total Courses: {{ totalCourses }}</p>
+    <p>Completed Courses: {{ completedCourses }}</p>
   </section>
 
   <section class="card">
-    <h2>Courses</h2>
-    <p>Explore the courses available in the learning portal.</p>
+    <h2>Student Profile</h2>
+    <label for="student-name">Student name</label>
+    <input id="student-name" type="text" [(ngModel)]="studentName">
+    <p>Your name is {{ studentName }}.</p>
+  </section>
+
+  <section class="card">
+    <h2>Course Message</h2>
+    <button type="button" [title]="courseButtonTitle" (click)="showCourseMessage()">
+      Show Course Message
+    </button>
+    <p>{{ courseMessage }}</p>
   </section>
 
   <section class="card">

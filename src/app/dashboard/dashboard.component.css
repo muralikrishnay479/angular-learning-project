@@ -7,3 +7,9 @@
   padding: 1rem;
   border: 1px solid #d7dce5;
 }
+
+input,
+button {
+  display: block;
+  margin-top: 0.5rem;
+}
