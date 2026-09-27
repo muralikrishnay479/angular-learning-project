@@ -12,3 +12,8 @@ ul {
 li {
   padding: 0.65rem 0;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

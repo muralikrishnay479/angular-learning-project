@@ -2,10 +2,14 @@
   padding: 1.5rem;
 }
 
-h2 {
-  margin-top: 0;
+.card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
 }
 
-p {
-  color: #4789ec;
+input,
+button {
+  display: block;
+  margin-top: 0.5rem;
 }

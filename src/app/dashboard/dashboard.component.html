@@ -1,5 +1,30 @@
-<section class="dashboard">
-  <h2>Dashboard</h2>
-  <p>Welcome to Angular LMS</p>
-  <p>This content belongs to the dashboard component.</p>
-</section>
+<main class="dashboard">
+  <h1>Dashboard</h1>
+  <p>Welcome, {{ studentName }}!</p>
+
+  <section class="card">
+    <h2>Course Summary</h2>
+    <p>Total Courses: {{ totalCourses }}</p>
+    <p>Completed Courses: {{ completedCourses }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Student Profile</h2>
+    <label for="student-name">Student name</label>
+    <input id="student-name" type="text" [(ngModel)]="studentName">
+    <p>Your name is {{ studentName }}.</p>
+  </section>
+
+  <section class="card">
+    <h2>Course Message</h2>
+    <button type="button" [title]="courseButtonTitle" (click)="showCourseMessage()">
+      Show Course Message
+    </button>
+    <p>{{ courseMessage }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Announcements</h2>
+    <p>Check here for the latest learning portal announcements.</p>
+  </section>
+</main>
