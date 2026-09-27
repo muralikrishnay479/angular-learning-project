@@ -8,6 +8,15 @@
     <p>Completed Courses: {{ completedCourses }}</p>
   </section>
 
+  <section class="card" [ngClass]="completedCourses > 0 ? 'has-completions' : 'no-completions'">
+    <h2>Completion Status</h2>
+    @if (completedCourses > 0) {
+      <p>You have completed courses. Great work!</p>
+    } @else {
+      <p>You have not completed a course yet.</p>
+    }
+  </section>
+
   <section class="card">
     <h2>Student Profile</h2>
     <label for="student-name">Student name</label>
@@ -21,6 +30,15 @@
       Show Course Message
     </button>
     <p>{{ courseMessage }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Courses</h2>
+    <ul>
+      @for (course of courses; track $index ) {
+        <li>{{ course }}</li>
+      }
+    </ul>
   </section>
 
   <section class="card">

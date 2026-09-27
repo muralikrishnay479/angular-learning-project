@@ -8,6 +8,14 @@
   border: 1px solid #d7dce5;
 }
 
+.has-completions {
+  border-left: 4px solid #31855b;
+}
+
+.no-completions {
+  border-left: 4px solid #b7791f;
+}
+
 input,
 button {
   display: block;
