@@ -23,6 +23,10 @@ export class CourseService {
     return this.courses;
   }
 
+  getCourseCount(): number {
+    return this.courses.length;
+  }
+
   getCourseById(id: number) {
     return this.courses[id];
   }
