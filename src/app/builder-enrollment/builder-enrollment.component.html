@@ -23,6 +23,16 @@
     <button type="button" (click)="resetForm()">Reset</button>
   </form>
 
+  <section class="examples">
+    <h2>Value update examples</h2>
+    <button type="button" (click)="loadCompleteExample()">
+      Load complete value with setValue()
+    </button>
+    <button type="button" (click)="updateNameOnly()">
+      Update only the name with patchValue()
+    </button>
+  </section>
+
   @if (enrollmentForm.invalid && enrollmentForm.touched) {
     <p class="error">Please complete the form correctly.</p>
   }

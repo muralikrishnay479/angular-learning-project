@@ -20,6 +20,21 @@ export class BuilderEnrollmentComponent {
 
   submitted = false;
 
+  loadCompleteExample(): void {
+    this.enrollmentForm.setValue({
+      studentName: 'Maya Chen',
+      email: 'maya@example.com',
+      course: 'Angular Fundamentals',
+      age: '28'
+    });
+  }
+
+  updateNameOnly(): void {
+    this.enrollmentForm.patchValue({
+      studentName: 'Updated Student'
+    });
+  }
+
   onSubmit(): void {
     this.enrollmentForm.markAllAsTouched();
     this.submitted = this.enrollmentForm.valid;

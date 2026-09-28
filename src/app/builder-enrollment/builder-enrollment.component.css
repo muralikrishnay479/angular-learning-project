@@ -21,6 +21,10 @@ button {
   padding: 0.5rem 0.75rem;
 }
 
+.examples {
+  margin-top: 1rem;
+}
+
 .error {
   color: #b42318;
 }
