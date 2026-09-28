@@ -1,0 +1,14 @@
+.courses-page {
+  padding: 1.5rem;
+}
+
+.course-card,
+.selected-course {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
+button {
+  margin-top: 1rem;
+}
