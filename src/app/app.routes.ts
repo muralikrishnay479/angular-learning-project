@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { CoursesComponent } from './courses/courses.component';
+import { BuilderEnrollmentComponent } from './builder-enrollment/builder-enrollment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EnrollmentComponent } from './enrollment/enrollment.component';
 import { authGuard } from './guards/auth.guard';
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'enrollment', component: EnrollmentComponent, canActivate: [authGuard] },
+  { path: 'builder-enrollment', component: BuilderEnrollmentComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent,  },
   { path: 'courses', component: CoursesComponent, canActivate: [authGuard]  },
   { path: 'courses/:id', component: CoursesComponent },

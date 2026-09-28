@@ -1,0 +1,40 @@
+.builder-page {
+  max-width: 42rem;
+  padding: 1.5rem;
+}
+
+form {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid #d7dce5;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  font: inherit;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.examples {
+  margin-top: 1rem;
+}
+
+.change-monitor {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #31855b;
+}
