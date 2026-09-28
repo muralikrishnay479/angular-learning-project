@@ -1,0 +1,53 @@
+<main class="enrollment-page">
+  <h1>Student Enrollment</h1>
+  <p>Complete the form to enroll in an Angular LMS course.</p>
+
+  <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()" novalidate>
+    <label for="student-name">Student name</label>
+    <input id="student-name" type="text" formControlName="studentName">
+    @if (studentName.touched && studentName.hasError('required')) {
+      <p class="error">Name is required.</p>
+    } @else if (studentName.touched && studentName.hasError('minlength')) {
+      <p class="error">Name must be at least 2 characters.</p>
+    }
+
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email">
+    @if (email.touched && email.hasError('required')) {
+      <p class="error">Email is required.</p>
+    } @else if (email.touched && email.hasError('email')) {
+      <p class="error">Enter a valid email address.</p>
+    }
+
+    <label for="course">Course</label>
+    <select id="course" formControlName="course">
+      <option value="">Choose a course</option>
+      <option value="Angular Fundamentals">Angular Fundamentals</option>
+      <option value="TypeScript for Web Apps">TypeScript for Web Apps</option>
+    </select>
+    @if (course.touched && course.hasError('required')) {
+      <p class="error">Course is required.</p>
+    }
+
+    <label for="age">Age</label>
+    <input id="age" type="number" formControlName="age">
+    @if (age.touched && age.hasError('required')) {
+      <p class="error">Age is required.</p>
+    } @else if (age.touched && (age.hasError('min') || age.hasError('max'))) {
+      <p class="error">Age must be between 18 and 100.</p>
+    }
+
+    <button type="submit">Submit Enrollment</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  @if (submittedValues) {
+    <section class="success">
+      <h2>Enrollment submitted</h2>
+      <p>Name: {{ submittedValues.studentName }}</p>
+      <p>Email: {{ submittedValues.email }}</p>
+      <p>Course: {{ submittedValues.course }}</p>
+      <p>Age: {{ submittedValues.age }}</p>
+    </section>
+  }
+</main>
