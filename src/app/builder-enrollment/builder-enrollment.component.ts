@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-builder-enrollment',
@@ -8,8 +9,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './builder-enrollment.component.html',
   styleUrl: './builder-enrollment.component.css'
 })
-export class BuilderEnrollmentComponent {
+export class BuilderEnrollmentComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
+  private readonly subscriptions = new Subscription();
 
   enrollmentForm = this.fb.nonNullable.group({
     studentName: ['', [Validators.required, Validators.minLength(2)]],
@@ -19,6 +21,22 @@ export class BuilderEnrollmentComponent {
   });
 
   submitted = false;
+  latestNameChange = 'No name changes yet.';
+  latestFormValue = 'No form changes yet.';
+
+  constructor() {
+    this.subscriptions.add(
+      this.enrollmentForm.controls.studentName.valueChanges.subscribe((name) => {
+        this.latestNameChange = name || '(empty)';
+      })
+    );
+
+    this.subscriptions.add(
+      this.enrollmentForm.valueChanges.subscribe((value) => {
+        this.latestFormValue = JSON.stringify(value);
+      })
+    );
+  }
 
   loadCompleteExample(): void {
     this.enrollmentForm.setValue({
@@ -43,5 +61,9 @@ export class BuilderEnrollmentComponent {
   resetForm(): void {
     this.enrollmentForm.reset();
     this.submitted = false;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

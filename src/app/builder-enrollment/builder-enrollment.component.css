@@ -25,6 +25,12 @@ button {
   margin-top: 1rem;
 }
 
+.change-monitor {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
 .error {
   color: #b42318;
 }

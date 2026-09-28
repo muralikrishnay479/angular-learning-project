@@ -33,6 +33,12 @@
     </button>
   </section>
 
+  <section class="change-monitor">
+    <h2>valueChanges monitor</h2>
+    <p>Latest student name change: {{ latestNameChange }}</p>
+    <p>Latest complete form change: {{ latestFormValue }}</p>
+  </section>
+
   @if (enrollmentForm.invalid && enrollmentForm.touched) {
     <p class="error">Please complete the form correctly.</p>
   }
