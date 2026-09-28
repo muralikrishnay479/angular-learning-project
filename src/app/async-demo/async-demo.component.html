@@ -1,0 +1,18 @@
+<main class="async-page">
+  <h1>Promises vs Observables</h1>
+  <p>This page compares one Promise result with multiple Observable values.</p>
+
+  <section class="card">
+    <h2>Promise</h2>
+    <button type="button" (click)="runPromise()">Run Promise</button>
+    <p>{{ promiseResult }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Observable</h2>
+    <button type="button" (click)="startObservable()">Subscribe to Observable</button>
+    <button type="button" (click)="stopObservable()">Unsubscribe</button>
+    <p>{{ observableStatus }}</p>
+    <p>Values received: {{ observableValues.join(', ') || 'none' }}</p>
+  </section>
+</main>
