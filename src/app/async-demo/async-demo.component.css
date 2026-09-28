@@ -1,0 +1,15 @@
+.async-page {
+  max-width: 42rem;
+  padding: 1.5rem;
+}
+
+.card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
+button {
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+}
