@@ -1,0 +1,23 @@
+<main class="courses-page">
+  <h1>Courses</h1>
+
+  @if (selectedCourse) {
+    <section class="selected-course">
+      <h2>Selected Course: {{ selectedCourse.name | titlecase }}</h2>
+      <p>Course ID: {{ selectedCourse.id }}</p>
+    </section>
+  }
+
+  @for (course of courses; track course.id) {
+    <article class="course-card">
+      <h2>{{ course.name | titlecase }}</h2>
+      <p>Instructor: {{ course.instructor }}</p>
+      <p>Price: {{ course.price | currency:'USD' }}</p>
+      <p>Progress: {{ course.progress | percent:'1.0-0' }}</p>
+      <p>Starts: {{ course.startDate | date:'longDate' }}</p>
+      <a [routerLink]="['/courses', course.id]">View course</a>
+    </article>
+  }
+
+  <button type="button" (click)="goToCourses()">Back to all courses</button>
+</main>

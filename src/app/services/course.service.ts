@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class CourseService {
   private readonly courses = [
     {
+      id: 101,
       name: 'angular fundamentals',
       instructor: 'Maya Chen',
       price: 1299.5,
@@ -11,6 +12,7 @@ export class CourseService {
       startDate: new Date(2026, 8, 14)
     },
     {
+      id: 202,
       name: 'typescript for web apps',
       instructor: 'Jamal Rivera',
       price: 899,
@@ -28,6 +30,6 @@ export class CourseService {
   }
 
   getCourseById(id: number) {
-    return this.courses[id];
+    return this.courses.find((course) => course.id === id);
   }
 }
