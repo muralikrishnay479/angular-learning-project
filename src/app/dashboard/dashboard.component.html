@@ -6,6 +6,7 @@
     <h2>Course Summary</h2>
     <p>Total Courses: {{ totalCourses }}</p>
     <p>Completed Courses: {{ completedCourses }}</p>
+    <p>Average Score: {{ averageScore | number:'1.1-2' }}</p>
   </section>
 
   <section class="card" [ngClass]="completedCourses > 0 ? 'has-completions' : 'no-completions'">
@@ -22,6 +23,9 @@
     <label for="student-name">Student name</label>
     <input id="student-name" type="text" [(ngModel)]="studentName">
     <p>Your name is {{ studentName }}.</p>
+    <p>Uppercase: {{ studentName | uppercase }}</p>
+    <p>Lowercase: {{ studentName | lowercase }}</p>
+    <p>Titlecase: {{ studentName | titlecase }}</p>
   </section>
 
   <section class="card">
@@ -34,11 +38,16 @@
 
   <section class="card">
     <h2>Courses</h2>
-    <ul>
-      @for (course of courses; track $index ) {
-        <li>{{ course }}</li>
-      }
-    </ul>
+    @for (course of courses; track course.name) {
+      <article>
+        <h3>{{ course.name | titlecase }}</h3>
+        <p>Instructor: {{ course.instructor }}</p>
+        <p>Price: {{ course.price | currency:'USD' }}</p>
+        <p>Progress: {{ course.progress | percent:'1.0-0' }}</p>
+        <p>Start date: {{ course.startDate | date }}</p>
+        <p>Formatted start date: {{ course.startDate | date:'longDate' }}</p>
+      </article>
+    }
   </section>
 
   <section class="card">
