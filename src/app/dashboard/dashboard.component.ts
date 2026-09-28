@@ -8,7 +8,7 @@ import {
   UpperCasePipe,
   LowerCasePipe
 } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CourseService } from '../services/course.service';
 
@@ -31,6 +31,7 @@ import { CourseService } from '../services/course.service';
 })
 export class DashboardComponent {
   courses;
+  courseCount
   studentName = 'aLEX morgan';
   totalCourses = 5;
   completedCourses = 2;
@@ -40,7 +41,13 @@ export class DashboardComponent {
 
   constructor(private readonly courseService: CourseService) {
     this.courses = this.courseService.getCourses();
+    this.courseCount = this.courseService.getCourseCount();
   }
+
+  // Dependency Injection using inject():
+  // private readonly courseService = inject(CourseService);
+  // courses = this.courseService.getCourses();
+  // courseCount = this.courseService.getCourseCount();
 
   showCourseMessage(): void {
     this.courseMessage = 'You are viewing your course overview.';
