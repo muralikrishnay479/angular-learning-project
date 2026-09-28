@@ -10,6 +10,7 @@ import {
 } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,28 +30,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  courses;
   studentName = 'aLEX morgan';
   totalCourses = 5;
   completedCourses = 2;
   averageScore = 87.456;
-  courses = [
-    {
-      name: 'angular fundamentals',
-      instructor: 'Maya Chen',
-      price: 1299.5,
-      progress: 0.75,
-      startDate: new Date(2026, 8, 14)
-    },
-    {
-      name: 'typescript for web apps',
-      instructor: 'Jamal Rivera',
-      price: 899,
-      progress: 0.4,
-      startDate: new Date(2026, 9, 5)
-    }
-  ];
   courseMessage = 'Select the button to see a course message.';
   courseButtonTitle = 'Show information about the LMS courses';
+
+  constructor(private readonly courseService: CourseService) {
+    this.courses = this.courseService.getCourses();
+  }
 
   showCourseMessage(): void {
     this.courseMessage = 'You are viewing your course overview.';
