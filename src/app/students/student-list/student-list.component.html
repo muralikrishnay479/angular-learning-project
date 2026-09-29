@@ -1,6 +1,6 @@
 <section class="student-list">
   <h2>Student list</h2>
-  <p>The list receives the students from its parent and creates one card per student.</p>
+  <p>The list receives students from its parent and creates one card per student.</p>
 
   @if (students.length === 0) {
     <p>No students remain.</p>
@@ -12,6 +12,7 @@
         (studentSelected)="selectStudent($event)"
         (deleteRequested)="deleteStudent($event)"
       />
+      <a class="details-link" [routerLink]="[student.id]">Open {{ student.name }} details</a>
     }
   }
 </section>

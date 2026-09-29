@@ -1,16 +1,12 @@
 <main class="students-page">
-  <h1>Student Management</h1>
-  <p>This page demonstrates parent and child components communicating with Inputs and Outputs.</p>
+  <h1>{{ applicationName }} Student Management</h1>
+  <p>This page demonstrates custom providers, a route resolver, and nested routes.</p>
 
   <section class="learning-panel">
-    <h2>Component communication</h2>
-    <p><strong>Parent:</strong> owns the students and selected student.</p>
-    <p><strong>Child:</strong> receives data with <code>&#64;Input()</code> and reports actions with <code>&#64;Output()</code>.</p>
-    @if (selectedStudentId !== null) {
-      <p class="selected-message">The parent selected student ID {{ selectedStudentId }}.</p>
-    } @else {
-      <p class="selected-message">Select a student to change an Input value.</p>
-    }
+    <h2>Provider configuration</h2>
+    <p>Application name from InjectionToken: {{ applicationName }}</p>
+    <p>Architecture demo enabled: {{ architectureDemoEnabled }}</p>
+    <p>Open a student to run the resolver and load the detail route.</p>
   </section>
 
   <app-student-list
@@ -19,4 +15,6 @@
     (studentSelected)="selectStudent($event)"
     (studentDeleted)="deleteStudent($event)"
   />
+
+  <router-outlet />
 </main>

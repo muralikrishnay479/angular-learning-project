@@ -1,33 +1,41 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { StudentListComponent } from './student-list/student-list.component';
 import { Student } from './student.model';
+import { APP_CONFIG, APP_LOGGER, AppConfig, AppLogger } from '../app-tokens';
+import { StudentDirectoryService } from '../services/student-directory.service';
 
 @Component({
   selector: 'app-students',
   standalone: true,
-  imports: [StudentListComponent],
+  imports: [StudentListComponent, RouterOutlet],
   templateUrl: './students.component.html',
   styleUrl: './students.component.css'
 })
 export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
-  students: Student[] = [
-    { id: 1, name: 'Anita Rao', email: 'anita@example.com', course: 'Angular Fundamentals' },
-    { id: 2, name: 'Rahul Kumar', email: 'rahul@example.com', course: 'TypeScript Basics' },
-    { id: 3, name: 'Meera Shah', email: 'meera@example.com', course: 'RxJS Essentials' }
-  ];
+  private readonly directory = inject(StudentDirectoryService);
+  private readonly config: AppConfig = inject(APP_CONFIG);
+  private readonly logger: AppLogger = inject(APP_LOGGER);
 
+  readonly students: Student[] = this.directory.getStudents();
   selectedStudentId: number | null = null;
 
+  readonly applicationName = this.config.applicationName;
+  readonly architectureDemoEnabled = this.config.enableArchitectureDemo;
+
   ngOnInit(): void {
-    console.log('StudentsComponent ngOnInit: parent is ready');
+    this.logger.log('StudentsComponent ngOnInit', {
+      applicationName: this.applicationName,
+      architectureDemoEnabled: this.architectureDemoEnabled
+    });
   }
 
   ngAfterViewInit(): void {
-    console.log('StudentsComponent ngAfterViewInit: child list view is ready');
+    this.logger.log('StudentsComponent ngAfterViewInit');
   }
 
   ngOnDestroy(): void {
-    console.log('StudentsComponent ngOnDestroy: parent and child tree is being removed');
+    this.logger.log('StudentsComponent ngOnDestroy');
   }
 
   selectStudent(studentId: number): void {
@@ -35,7 +43,8 @@ export class StudentsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   deleteStudent(studentId: number): void {
-    this.students = this.students.filter((student) => student.id !== studentId);
+    const remainingStudents = this.students.filter((student) => student.id !== studentId);
+    this.students.splice(0, this.students.length, ...remainingStudents);
 
     if (this.selectedStudentId === studentId) {
       this.selectedStudentId = null;

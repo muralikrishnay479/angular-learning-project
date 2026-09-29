@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { API_BASE_URL } from '../app-tokens';
 
 export interface Product {
   id: number;
@@ -23,7 +24,7 @@ export interface ProductDeletionResponse extends Product {
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private readonly http = inject(HttpClient);
-  private readonly productsUrl = 'https://dummyjson.com/products';
+  private readonly productsUrl = inject(API_BASE_URL) + '/products';
 
   getProducts(): Observable<ProductsResponse> {
     return this.http.get<ProductsResponse>(this.productsUrl);

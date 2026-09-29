@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Student } from '../student.model';
 import { StudentCardComponent } from '../student-card/student-card.component';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [StudentCardComponent],
+  imports: [StudentCardComponent, RouterLink],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.css'
 })
