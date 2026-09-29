@@ -1,0 +1,14 @@
+.details-page {
+  padding: 1.5rem;
+}
+
+.student-summary {
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
+.details-nav {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}

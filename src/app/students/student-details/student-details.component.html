@@ -1,0 +1,23 @@
+<main class="details-page">
+  @if (student) {
+    <h1>{{ sectionTitle }}</h1>
+    <p>This component was loaded after the resolver supplied the student.</p>
+
+    <section class="student-summary">
+      <h2>{{ student.name }}</h2>
+      <p>Email: {{ student.email }}</p>
+      <p>Course: {{ student.course }}</p>
+    </section>
+
+    <nav class="details-nav">
+      <a [routerLink]="['details']">Open details tab</a>
+      <a routerLink="/students">Back to students</a>
+    </nav>
+
+    <router-outlet />
+  } @else {
+    <h1>Student not found</h1>
+    <p>The resolver could not find a student with this ID.</p>
+    <a routerLink="/students">Back to students</a>
+  }
+</main>
