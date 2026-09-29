@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map, filter } from 'rxjs';
 
 @Component({
   selector: 'app-async-demo',
@@ -13,7 +13,7 @@ export class AsyncDemoComponent implements OnDestroy {
   observableStatus = 'The Observable has not been subscribed to.';
   private observableSubscription?: Subscription;
 
-  private readonly numberStream = new Observable<number>((subscriber) => {
+  private readonly rawNumberStream = new Observable<number>((subscriber) => {
     let value = 1;
     const timer = setInterval(() => {
       subscriber.next(value++);
@@ -26,6 +26,11 @@ export class AsyncDemoComponent implements OnDestroy {
 
     return () => clearInterval(timer);
   });
+
+  private readonly numberStream = this.rawNumberStream.pipe(
+    map((value) => value * 10),
+  filter((value) => value >= 30)
+  );
 
   runPromise(): void {
     this.promiseResult = 'Promise is pending...';
