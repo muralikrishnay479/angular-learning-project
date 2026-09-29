@@ -15,4 +15,10 @@
     <p>{{ observableStatus }}</p>
     <p>Mapped values received: {{ observableValues.join(', ') || 'none' }}</p>
   </section>
+
+  <section class="card">
+    <h2>Angular Observable usage</h2>
+    <p>Async pipe value: {{ learningData$ | async }}</p>
+    <p>Manual subscription value: {{ manualLearningValue }}</p>
+  </section>
 </main>
