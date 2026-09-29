@@ -1,4 +1,22 @@
 <main class="students-page">
-  <h1>Students</h1>
-  <p>This is the Angular LMS students page.</p>
+  <h1>Student Management</h1>
+  <p>This page demonstrates parent and child components communicating with Inputs and Outputs.</p>
+
+  <section class="learning-panel">
+    <h2>Component communication</h2>
+    <p><strong>Parent:</strong> owns the students and selected student.</p>
+    <p><strong>Child:</strong> receives data with <code>&#64;Input()</code> and reports actions with <code>&#64;Output()</code>.</p>
+    @if (selectedStudentId !== null) {
+      <p class="selected-message">The parent selected student ID {{ selectedStudentId }}.</p>
+    } @else {
+      <p class="selected-message">Select a student to change an Input value.</p>
+    }
+  </section>
+
+  <app-student-list
+    [students]="students"
+    [selectedStudentId]="selectedStudentId"
+    (studentSelected)="selectStudent($event)"
+    (studentDeleted)="deleteStudent($event)"
+  />
 </main>

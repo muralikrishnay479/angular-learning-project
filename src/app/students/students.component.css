@@ -1,3 +1,14 @@
 .students-page {
   padding: 1.5rem;
 }
+
+.learning-panel {
+  padding: 1rem;
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+}
+
+.selected-message {
+  color: #1d4ed8;
+  font-weight: 600;
+}

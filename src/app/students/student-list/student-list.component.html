@@ -1,0 +1,17 @@
+<section class="student-list">
+  <h2>Student list</h2>
+  <p>The list receives the students from its parent and creates one card per student.</p>
+
+  @if (students.length === 0) {
+    <p>No students remain.</p>
+  } @else {
+    @for (student of students; track student.id) {
+      <app-student-card
+        [student]="student"
+        [selected]="selectedStudentId === student.id"
+        (studentSelected)="selectStudent($event)"
+        (deleteRequested)="deleteStudent($event)"
+      />
+    }
+  }
+</section>
