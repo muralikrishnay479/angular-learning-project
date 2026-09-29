@@ -1,6 +1,6 @@
 <main class="async-page">
   <h1>Promises vs Observables</h1>
-  <p>This page compares one Promise result with multiple Observable values.</p>
+  <p>This page compares one Promise result with multiple Observable values and a map operator.</p>
 
   <section class="card">
     <h2>Promise</h2>
@@ -13,6 +13,12 @@
     <button type="button" (click)="startObservable()">Subscribe to Observable</button>
     <button type="button" (click)="stopObservable()">Unsubscribe</button>
     <p>{{ observableStatus }}</p>
-    <p>Values received: {{ observableValues.join(', ') || 'none' }}</p>
+    <p>Mapped values received: {{ observableValues.join(', ') || 'none' }}</p>
+  </section>
+
+  <section class="card">
+    <h2>Angular Observable usage</h2>
+    <p>Async pipe value: {{ learningData$ | async }}</p>
+    <p>Manual subscription value: {{ manualLearningValue }}</p>
   </section>
 </main>
