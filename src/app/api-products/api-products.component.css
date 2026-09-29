@@ -1,0 +1,17 @@
+.products-page {
+  padding: 1.5rem;
+}
+
+.product-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7dce5;
+}
+
+.loading {
+  color: #52627a;
+}
+
+.success {
+  color: #31855b;
+}
