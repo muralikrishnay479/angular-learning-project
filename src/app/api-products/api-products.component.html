@@ -6,12 +6,31 @@
     <p class="success">Products loaded successfully.</p>
 
     @for (product of response.products; track product.id) {
-      <article class="product-card">
-        <h2>{{ product.title }}</h2>
-        <p>Price: {{ product.price | currency:'USD' }}</p>
-      </article>
+      @if (!deletedProductIds.has(product.id)) {
+        <article class="product-card">
+          <h2>{{ product.title }}</h2>
+          <p>Price: {{ product.price | currency:'USD' }}</p>
+          <button
+            type="button"
+            [disabled]="deletingId === product.id"
+            (click)="deleteProduct(product.id)"
+          >
+            {{ deletingId === product.id ? 'Deleting...' : 'Delete product' }}
+          </button>
+        </article>
+      }
     }
   } @else {
     <p class="loading">Loading products...</p>
+  }
+
+  @if (deletedProduct) {
+    <p class="success">
+      Deleted product {{ deletedProduct.id }}: {{ deletedProduct.title }}.
+    </p>
+  }
+
+  @if (deleteError) {
+    <p class="error">{{ deleteError }}</p>
   }
 </main>

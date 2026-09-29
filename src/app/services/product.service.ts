@@ -15,6 +15,11 @@ export interface ProductsResponse {
   limit: number;
 }
 
+export interface ProductDeletionResponse extends Product {
+  isDeleted: boolean;
+  deletedOn: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private readonly http = inject(HttpClient);
@@ -22,5 +27,9 @@ export class ProductService {
 
   getProducts(): Observable<ProductsResponse> {
     return this.http.get<ProductsResponse>(this.productsUrl);
+  }
+
+  deleteProduct(id: number): Observable<ProductDeletionResponse> {
+    return this.http.delete<ProductDeletionResponse>(`${this.productsUrl}/${id}`);
   }
 }
