@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 
 export interface Product {
   id: number;
@@ -31,5 +31,20 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<ProductDeletionResponse> {
     return this.http.delete<ProductDeletionResponse>(`${this.productsUrl}/${id}`);
+  }
+
+  getMissingProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.productsUrl}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Product request failed in ProductService:', {
+          status: error.status,
+          statusText: error.statusText,
+          url: error.url,
+          responseBody: error.error
+        });
+
+        return throwError(() => error);
+      })
+    );
   }
 }

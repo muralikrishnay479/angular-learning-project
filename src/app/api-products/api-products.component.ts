@@ -1,4 +1,5 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { ProductService, ProductDeletionResponse } from '../services/product.service';
 import { Subscription } from 'rxjs';
@@ -19,6 +20,9 @@ export class ApiProductsComponent implements OnDestroy {
   deletedProduct: ProductDeletionResponse | null = null;
   deletingId: number | null = null;
   deleteError = '';
+  errorDemoLoading = false;
+  errorDemoMessage = '';
+  errorDemoStatus: number | null = null;
 
   deleteProduct(id: number): void {
     this.deletingId = id;
@@ -34,6 +38,27 @@ export class ApiProductsComponent implements OnDestroy {
         error: () => {
           this.deleteError = 'The product could not be deleted.';
           this.deletingId = null;
+        }
+      })
+    );
+  }
+
+  requestMissingProduct(): void {
+    this.errorDemoLoading = true;
+    this.errorDemoMessage = '';
+    this.errorDemoStatus = null;
+
+    this.subscriptions.add(
+      this.productService.getMissingProduct(999999).subscribe({
+        next: (product) => {
+          this.errorDemoMessage = `Unexpectedly received product ${product.id}.`;
+          this.errorDemoLoading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Product request failed in ApiProductsComponent:', error);
+          this.errorDemoMessage = 'We could not find that product. Try again to repeat the request.';
+          this.errorDemoStatus = error.status;
+          this.errorDemoLoading = false;
         }
       })
     );

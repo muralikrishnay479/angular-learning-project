@@ -2,6 +2,25 @@
   <h1>Products from an HTTP API</h1>
   <p>This page loads product data with Angular HttpClient.</p>
 
+  <section class="error-demo">
+    <h2>HTTP error-handling demonstration</h2>
+    <p>This asks the API for product ID 999999, which does not exist.</p>
+    <button type="button" [disabled]="errorDemoLoading" (click)="requestMissingProduct()">
+      {{ errorDemoLoading ? 'Requesting...' : 'Request missing product' }}
+    </button>
+
+    @if (errorDemoLoading) {
+      <p class="loading">Waiting for the failed request...</p>
+    }
+
+    @if (errorDemoMessage) {
+      <p class="error">{{ errorDemoMessage }}</p>
+      @if (errorDemoStatus) {
+        <p class="technical-status">HTTP status: {{ errorDemoStatus }}</p>
+      }
+    }
+  </section>
+
   @if (products$ | async; as response) {
     <p class="success">Products loaded successfully.</p>
 
