@@ -1,0 +1,19 @@
+<article class="student-card" [class.selected-card]="selected">
+  <div>
+    <h3>{{ student.name }}</h3>
+    <p>{{ student.email }}</p>
+    <p>Course: {{ student.course }}</p>
+    @if (selected) {
+      <p class="selected-label">Selected by the parent</p>
+    }
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="selectStudent()">
+      {{ selected ? 'Selected' : 'Select' }}
+    </button>
+    <button type="button" class="delete-button" (click)="requestDelete()">
+      Delete
+    </button>
+  </div>
+</article>
