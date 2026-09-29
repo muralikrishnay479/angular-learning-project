@@ -2,6 +2,13 @@
   padding: 1.5rem;
 }
 
+.error-demo {
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid #f0b7b0;
+  background: #fff8f7;
+}
+
 .product-card {
   margin-top: 1rem;
   padding: 1rem;
@@ -23,4 +30,10 @@ button {
 
 .error {
   color: #b42318;
+}
+
+
+.technical-status {
+  color: #52627a;
+  font-size: 0.9rem;
 }
