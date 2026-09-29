@@ -62,7 +62,31 @@
     </section>
   }
 
+  <section class="success">
+    <h2>Update examples</h2>
+    <p>These buttons update simulated student ID 1.</p>
+    <button type="button" [disabled]="updating" (click)="updateWithPut()">
+      Send complete resource with PUT
+    </button>
+    <button type="button" [disabled]="updating" (click)="updateWithPatch()">
+      Send email only with PATCH
+    </button>
+  </section>
+
+  @if (updatedStudent) {
+    <section class="success">
+      <h2>{{ updateMethod }} response</h2>
+      <p>Updated student ID: {{ updatedStudent.id }}</p>
+      <p>Returned name: {{ updatedStudent.firstName }}</p>
+      <p>Returned email: {{ updatedStudent.email }}</p>
+    </section>
+  }
+
   @if (submitError) {
     <p class="error">{{ submitError }}</p>
+  }
+
+  @if (updateError) {
+    <p class="error">{{ updateError }}</p>
   }
 </main>

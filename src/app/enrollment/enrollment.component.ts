@@ -45,6 +45,10 @@ export class EnrollmentComponent implements OnDestroy {
     age: string;
   } | null = null;
   createdStudent: StudentResponse | null = null;
+  updatedStudent: StudentResponse | null = null;
+  updateMethod = '';
+  updating = false;
+  updateError = '';
   submitting = false;
   submitError = '';
 
@@ -103,6 +107,63 @@ export class EnrollmentComponent implements OnDestroy {
     this.createdStudent = null;
     this.submitError = '';
     this.submitting = false;
+    this.updatedStudent = null;
+    this.updateMethod = '';
+    this.updateError = '';
+  }
+
+  updateWithPut(): void {
+    if (this.enrollmentForm.invalid) {
+      this.enrollmentForm.markAllAsTouched();
+      return;
+    }
+
+    const formValue = this.enrollmentForm.getRawValue();
+    this.updating = true;
+    this.updateError = '';
+    this.subscriptions.add(
+      this.studentService.updateStudentWithPut(1, {
+        firstName: formValue.studentName,
+        email: formValue.email,
+        course: formValue.course,
+        age: Number(formValue.age)
+      }).subscribe({
+        next: (student) => {
+          this.updatedStudent = student;
+          this.updateMethod = 'PUT';
+          this.updating = false;
+        },
+        error: () => {
+          this.updateError = 'The PUT update failed.';
+          this.updating = false;
+        }
+      })
+    );
+  }
+
+  updateWithPatch(): void {
+    if (this.enrollmentForm.invalid) {
+      this.enrollmentForm.markAllAsTouched();
+      return;
+    }
+
+    this.updating = true;
+    this.updateError = '';
+    this.subscriptions.add(
+      this.studentService.updateStudentWithPatch(1, {
+        email: this.enrollmentForm.controls.email.value
+      }).subscribe({
+        next: (student) => {
+          this.updatedStudent = student;
+          this.updateMethod = 'PATCH';
+          this.updating = false;
+        },
+        error: () => {
+          this.updateError = 'The PATCH update failed.';
+          this.updating = false;
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
