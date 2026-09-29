@@ -37,7 +37,9 @@
       <p class="error">Age must be between 18 and 100.</p>
     }
 
-    <button type="submit">Submit Enrollment</button>
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'Submitting...' : 'Submit Enrollment' }}
+    </button>
     <button type="button" (click)="resetForm()">Reset</button>
   </form>
 
@@ -49,5 +51,42 @@
       <p>Course: {{ submittedValues.course }}</p>
       <p>Age: {{ submittedValues.age }}</p>
     </section>
+  }
+
+  @if (createdStudent) {
+    <section class="success">
+      <h2>API response</h2>
+      <p>Created student ID: {{ createdStudent.id }}</p>
+      <p>Name sent: {{ createdStudent.firstName }}</p>
+      <p>Email sent: {{ createdStudent.email }}</p>
+    </section>
+  }
+
+  <section class="success">
+    <h2>Update examples</h2>
+    <p>These buttons update simulated student ID 1.</p>
+    <button type="button" [disabled]="updating" (click)="updateWithPut()">
+      Send complete resource with PUT
+    </button>
+    <button type="button" [disabled]="updating" (click)="updateWithPatch()">
+      Send email only with PATCH
+    </button>
+  </section>
+
+  @if (updatedStudent) {
+    <section class="success">
+      <h2>{{ updateMethod }} response</h2>
+      <p>Updated student ID: {{ updatedStudent.id }}</p>
+      <p>Returned name: {{ updatedStudent.firstName }}</p>
+      <p>Returned email: {{ updatedStudent.email }}</p>
+    </section>
+  }
+
+  @if (submitError) {
+    <p class="error">{{ submitError }}</p>
+  }
+
+  @if (updateError) {
+    <p class="error">{{ updateError }}</p>
   }
 </main>
