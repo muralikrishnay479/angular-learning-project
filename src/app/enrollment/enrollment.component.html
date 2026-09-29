@@ -37,7 +37,9 @@
       <p class="error">Age must be between 18 and 100.</p>
     }
 
-    <button type="submit">Submit Enrollment</button>
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'Submitting...' : 'Submit Enrollment' }}
+    </button>
     <button type="button" (click)="resetForm()">Reset</button>
   </form>
 
@@ -49,5 +51,18 @@
       <p>Course: {{ submittedValues.course }}</p>
       <p>Age: {{ submittedValues.age }}</p>
     </section>
+  }
+
+  @if (createdStudent) {
+    <section class="success">
+      <h2>API response</h2>
+      <p>Created student ID: {{ createdStudent.id }}</p>
+      <p>Name sent: {{ createdStudent.firstName }}</p>
+      <p>Email sent: {{ createdStudent.email }}</p>
+    </section>
+  }
+
+  @if (submitError) {
+    <p class="error">{{ submitError }}</p>
   }
 </main>
